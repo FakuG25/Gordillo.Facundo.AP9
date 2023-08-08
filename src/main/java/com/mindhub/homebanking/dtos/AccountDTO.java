@@ -1,4 +1,4 @@
-package com.mindhub.homebanking.controllers;
+package com.mindhub.homebanking.dtos;
 
 import com.mindhub.homebanking.models.Account;
 
