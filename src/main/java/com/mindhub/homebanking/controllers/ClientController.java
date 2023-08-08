@@ -37,7 +37,6 @@ public class ClientController {
         Client client = clientRepository.findById(id).orElse(null);
    return new  ClientDTO(client);
 
-
     }
 
 }
