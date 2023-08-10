@@ -8,35 +8,24 @@ import java.util.Set;
 import java.util.Optional;
 
 @Entity
-public class Client {
-
+    public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
 
-@OneToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
-private Set<Account> accounts = new HashSet<>();
+
+
     private String firstName;
 
     private String lastName;
 
     private String email;
-
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
-
-    }
-
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<Account> accounts = new HashSet<>();
     public Client(){
-
     }
-
     public Client(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,8 +37,9 @@ private Set<Account> accounts = new HashSet<>();
     public String getEmail() {
         return email;
     }
-
-
+    public void setEmail(String email) {
+        this.email = email;
+    }
     public String getFirstName() {
         return firstName;
     }
@@ -66,13 +56,13 @@ private Set<Account> accounts = new HashSet<>();
         this.lastName = lastName;
     }
 
-
-public void addAccount(Account account){
-        account.setAccounts(this);
-accounts.add(account);
-
-}
-
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+    public void addAccount(Account account){
+        account.setClient(this);
+        accounts.add(account);
+    }
 }
 
 

@@ -20,23 +20,17 @@ import java.util.stream.Collectors;
 @RestController
 public class ClientController {
     @Autowired
-
     private ClientRepository clientRepository;
 
 @RequestMapping("/clients")
    public List<ClientDTO> getClients() {
     List<Client> allClients = clientRepository.findAll();
-
     List<ClientDTO> convertedList = allClients.stream().map(ClientDTO::new).collect(Collectors.toList());
-
     return convertedList;
 }
-
     @RequestMapping("/clients/{id}")
     public ClientDTO getClientById(@PathVariable Long id){
-        Client client = clientRepository.findById(id).orElse(null);
+    Client client = clientRepository.findById(id).orElse(null);
    return new  ClientDTO(client);
-
     }
-
 }
