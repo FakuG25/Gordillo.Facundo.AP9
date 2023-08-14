@@ -1,21 +1,21 @@
 package com.mindhub.homebanking.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mindhub.homebanking.dtos.TransactionDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Entity
     public class Client {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-
-
 
     private String firstName;
 
@@ -24,6 +24,9 @@ import java.util.Optional;
     private String email;
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Account> accounts = new HashSet<>();
+
+    @OneToMany(mappedBy="clientLoan", fetch=FetchType.EAGER)
+    private Set<ClientLoan> clientLoans;
     public Client(){
     }
     public Client(String firstName, String lastName, String email) {
@@ -63,6 +66,26 @@ import java.util.Optional;
         account.setClient(this);
         accounts.add(account);
     }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public Set<ClientLoan> getClientLoans() {
+        return clientLoans;
+    }
+
+    public void setClientLoans(Set<ClientLoan> clientLoans) {
+        this.clientLoans = clientLoans;
+    }
+
+
+@JsonIgnore
+    public Set<Client> getLoans() {
+        return clientLoans.stream().map(loan -> loan.getClientLoan()).collect(Collectors.toSet());
+    }
+
+
 }
 
 
