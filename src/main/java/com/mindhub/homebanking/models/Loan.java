@@ -72,8 +72,6 @@ public class Loan {
         this.clientLoans = clientLoans;
     }
 
-
-    @JsonIgnore
     public Set<Client> getClients() {
         return clientLoans.stream().map(client -> client.getClientLoan()).collect(Collectors.toSet());
     }
