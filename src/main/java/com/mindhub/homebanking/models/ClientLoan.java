@@ -38,7 +38,6 @@ public class ClientLoan {
     public ClientLoan(Client clientLoan, Loan loan){
         this.clientLoan = clientLoan;
         this.loan = loan;
-
     }
 
     public Long getId() {

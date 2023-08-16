@@ -21,11 +21,7 @@ public class AccountController {
 
     @RequestMapping("/accounts")
     public List<AccountDTO> getAccounts() {
-        List<Account> allAccounts = accountRepository.findAll();
-
-        List<AccountDTO> convertedList = allAccounts.stream().map(AccountDTO::new).collect(Collectors.toList());
-
-        return convertedList;
+        return accountRepository.findAll().stream().map(AccountDTO::new).collect(Collectors.toList());
     }
 
     @RequestMapping("/accounts/{id}")

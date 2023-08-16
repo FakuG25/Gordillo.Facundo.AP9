@@ -159,8 +159,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.homebanking [bootRun]" />
         <item itemvalue="Gradle.homebanking [clean]" />
+        <item itemvalue="Gradle.homebanking [bootRun]" />
       </list>
     </recent_temporary>
   </component>
