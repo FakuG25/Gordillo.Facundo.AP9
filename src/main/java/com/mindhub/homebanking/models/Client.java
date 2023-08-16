@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
     private Set<Account> accounts = new HashSet<>();
 
     @OneToMany(mappedBy="clientLoan", fetch=FetchType.EAGER)
-    private Set<ClientLoan> clientLoans;
+    private Set<ClientLoan> clientLoans = new HashSet<>();
 
     @OneToMany(mappedBy = "card", fetch = FetchType.EAGER)
     private Set<Card> cards = new HashSet<>();
@@ -89,16 +89,14 @@ import java.util.stream.Collectors;
         account.setClient(this);
         accounts.add(account);
     }
-
-    public void addClientLoan(ClientLoan clientLoan){
-        clientLoan.getClientLoan();
-        clientLoans.add(clientLoan);
-    }
     public void addCard(Card card){
         card.setCard(this);
         cards.add(card);
     }
-
+    public void addClientLoan(ClientLoan clientLoan){
+        clientLoan.setClientLoan(this);
+        clientLoans.add(clientLoan);
+    }
 
 }
 
