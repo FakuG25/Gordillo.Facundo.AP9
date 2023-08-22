@@ -24,9 +24,7 @@ public class AccountController {
         return accountRepository.findAll().stream().map(AccountDTO::new).collect(Collectors.toList());
     }
 
-    @RequestMapping("/accounts/{id}")
-    public AccountDTO getAccountById(@PathVariable Long id){
-        Account account = accountRepository.findById(id).orElse(null);
-        return new  AccountDTO(account);
-    }
+
+
+
 }

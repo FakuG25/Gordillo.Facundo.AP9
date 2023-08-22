@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
     private String lastName;
 
     private String email;
+    private String password;
+
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Account> accounts = new HashSet<>();
 
@@ -32,10 +34,11 @@ import java.util.stream.Collectors;
     private Set<Card> cards = new HashSet<>();
     public Client(){
     }
-    public Client(String firstName, String lastName, String email) {
+    public Client(String firstName, String lastName, String email,String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
     }
     public Long getId() {
         return id;
@@ -60,6 +63,14 @@ import java.util.stream.Collectors;
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Set<Account> getAccounts() {

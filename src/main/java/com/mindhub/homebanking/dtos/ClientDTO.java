@@ -17,8 +17,6 @@ public class ClientDTO {
     private String email;
     private Set<AccountDTO> accounts = new HashSet<>();
 
-    private Set<TransactionDTO> transactions = new HashSet<>();
-
     private Set<ClientLoanDTO> loans = new HashSet<>();
     private Set<CardDTO> cards = new HashSet<>();
 
@@ -52,10 +50,6 @@ public class ClientDTO {
         return accounts;
     }
 
-    public Set<TransactionDTO> getTransactions() {
-        return transactions;
-    }
-
     public Set<ClientLoanDTO> getLoans() {
         return loans;
     }
@@ -67,4 +61,6 @@ public class ClientDTO {
     public void setCards(Set<CardDTO> cards) {
         this.cards = cards;
     }
+
+
 }
