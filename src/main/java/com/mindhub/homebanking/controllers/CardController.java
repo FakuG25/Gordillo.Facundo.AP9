@@ -90,38 +90,4 @@ private CardRepository cardRepository;
 }
 
 
-    /*public ResponseEntity<Object> createCard (Authentication authentication, @RequestParam Enum CardType,
-                                              @RequestParam CardColor) {
-        Client client = this.clientRepository.findByEmail((authentication.getName()));
-        if (client.getCards().size() < 3){
-            Card card = cardRepository.save(new Card(client.getFirstName() + " " + client.getLastName(), ));
-        }
-    return null;
-    }
-*/
-
-
-
-/*
-public ResponseEntity<Object> createCard(Authentication authentication, CardColor cardColor, CardType cardType){
-        Client client = this.clientRepository.findByEmail((authentication.getName()));
-        long creditDebitCardCount = client.getCards().stream()
-                .filter(card -> card.getType() == CardType.CREDIT || card.getType() == CardType.DEBIT)
-                .count();
-
-        if ((cardType == CardType.CREDIT || cardType == CardType.DEBIT) && creditDebitCardCount <= 3){
-            Card card = cardRepository.save(new Card(client.getFirstName() + " " + client.getLastName(),
-                    cardType,cardColor,getRandomNumber(1000, 9999) + "-" + getRandomNumber(1000, 9999)
-                    + "-" + getRandomNumber(1000, 9999) + "-" + getRandomNumber(1000, 9999),
-                    getRandomNumber(100, 999), LocalDate.now(), LocalDate.now().plusYears(5)));
-            client.addCard(card);
-            cardRepository.save(card);
-
-            return new ResponseEntity<>(HttpStatus.CREATED);
-
-        }
-        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-    }
- */
-
 
