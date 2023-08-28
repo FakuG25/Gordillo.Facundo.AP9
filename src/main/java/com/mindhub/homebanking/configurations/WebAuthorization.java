@@ -20,10 +20,10 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/web/index.html","/web/css/**", "/web/img/**", "/web/js/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/login", "/api/logout").permitAll()
-                .antMatchers(HttpMethod.POST,"/api/clients").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/login", "/api/logout", "/api/clients").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/clients/**").hasAnyAuthority("CLIENT")
+                .antMatchers("/rest/**").hasAuthority("ADMIN")
                 .antMatchers("/web/**").hasAnyAuthority("CLIENT","ADMIN");
-
 
         http.formLogin()
                 .usernameParameter("email")

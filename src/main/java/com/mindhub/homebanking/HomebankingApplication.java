@@ -19,6 +19,21 @@ public class HomebankingApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HomebankingApplication.class, args);
 	}
+
+	@Autowired AccountRepository accountRepository;
+	public int getRandomNumber(int min, int max) {
+		return (int) ((Math.random() * (max - min)) + min);
+	}
+	public String uniqueRandomNumber(){
+		String number;
+		do {
+			number = ("VIN-" + getRandomNumber(1, 99999999));
+			return number;
+		} while (accountRepository.existsByNumber(number));
+
+	}
+
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	@Bean
@@ -26,13 +41,15 @@ public class HomebankingApplication {
 		return (args) -> {
 			Client client1 = new Client("Melba", "Morel", "melba@mindhub.com", passwordEncoder.encode("123"));
 			Client client2 = new Client("Jorge", "Alvarez", "AlvarezJorge@gmail.com", passwordEncoder.encode("1234"));
+			Client client3 = new Client("admin", "admin", "admin@admin.com", passwordEncoder.encode("admin"));
 			clientRepository.save(client1);
 			clientRepository.save(client2);
+			clientRepository.save(client3);
 
-			Account account1 = new Account("VIN001", LocalDate.now(), 5000);
-			Account account2 = new Account("VIN002", LocalDate.now().plusDays(1), 7500);
-			Account account3 = new Account("VIN003", LocalDate.now(), 10000);
-			Account account4 = new Account("VIN004", LocalDate.now().minusDays(10), 4000);
+			Account account1 = new Account(uniqueRandomNumber(),LocalDate.now(), 5000);
+			Account account2 = new Account(uniqueRandomNumber(), LocalDate.now().plusDays(1), 7500);
+			Account account3 = new Account(uniqueRandomNumber(), LocalDate.now(), 10000);
+			Account account4 = new Account(uniqueRandomNumber(), LocalDate.now().minusDays(10), 4000);
 
 			client1.addAccount(account1);
 			client1.addAccount(account2);

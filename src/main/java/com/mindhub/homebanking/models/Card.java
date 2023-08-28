@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,6 +22,8 @@ public class Card {
     private LocalDate fromDate;
     private LocalDate thruDate;
 
+    private ArrayList<Card> cards;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "card_id")
     private Client card;
@@ -35,6 +38,7 @@ public class Card {
         this.cvv = cvv;
         this.fromDate = fromDate;
         this.thruDate = thruDate;
+
     }
 
     public Long getId() {

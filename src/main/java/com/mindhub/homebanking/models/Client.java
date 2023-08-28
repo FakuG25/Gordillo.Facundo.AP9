@@ -6,12 +6,15 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Entity
     public class Client {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -32,6 +35,8 @@ import java.util.stream.Collectors;
 
     @OneToMany(mappedBy = "card", fetch = FetchType.EAGER)
     private Set<Card> cards = new HashSet<>();
+
+
     public Client(){
     }
     public Client(String firstName, String lastName, String email,String password) {
